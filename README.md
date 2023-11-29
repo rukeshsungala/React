@@ -65,3 +65,8 @@ import Component from "./path";
 -Actual Dom is basically an Object
 
 - Diff algorithm will find out the difference between previous and current virtual DOM
+
+# 2 types routing in web apps
+
+-Client Side Routing
+-Server Side Routing
