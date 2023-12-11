@@ -21,8 +21,9 @@ const RestaruantMenu = () => {
 
   const { name, costForTwoMessage, cuisines } =
     resInfo?.cards[0]?.card?.card?.info;
-  const { itemCards } =
-    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+  const { cards } = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR;
+  //   const { itemCards1 } =
+  //     resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
   //console.log(itemCards);
 
   return (
@@ -32,8 +33,17 @@ const RestaruantMenu = () => {
         {cuisines.join(", ")} - {costForTwoMessage}
       </p>
       <h2>Menu</h2>
+      <ul className="menu">
+        {cards[1]?.card?.card?.itemCards.map((item) => (
+          <li className="menu-item" key={item.card.info.id}>
+            {item.card.info.name} - {"Rs"}:
+            {item.card.info.price / 100 || item.card.info.defaultPrice / 100}
+          </li>
+        ))}
+      </ul>
+      <h2>Menu</h2>
       <ul>
-        {itemCards.map((item) => (
+        {cards[2]?.card?.card?.itemCards.map((item) => (
           <li key={item.card.info.id}>
             {item.card.info.name} - {"Rs"}:
             {item.card.info.price / 100 || item.card.info.defaultPrice / 100}

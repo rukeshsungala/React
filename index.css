@@ -10,7 +10,7 @@
   justify-content: space-between;
   margin: 10px;
   width: auto;
-  background-color: rgb(230, 201, 135);
+  background-color: rgb(238, 103, 45);
   border-radius: 5px;
   box-shadow: -1px 4px 20px 14px rgba(0, 0, 0, 0.2);
   color: black;
@@ -167,4 +167,23 @@
   height: 200px;
   background: lightgrey;
   margin: 20px;
+}
+.user-card {
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid black;
+}
+.about {
+  padding: 10px;
+}
+.menu {
+  padding: 10px;
+}
+.menu-item {
+  padding: auto;
+  width: auto;
+  height: 20px;
+  border: 1px solid black;
+  margin: 20px;
+  text-align: center;
 }
