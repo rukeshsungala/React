@@ -7,4 +7,7 @@ export const CDN_URL =
 export const MENU_API =
   "https://corsproxy.io/?https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.8628013&lng=77.7959564&restaurantId=";
 
+export const MENU_ITEM_TYPE_KEY =
+  "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory";
+
 export default LOGO_URL;
