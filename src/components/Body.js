@@ -1,9 +1,10 @@
-import ResturantCard from "./ResturantCard";
+import ResturantCard, { withPromotedLabel } from "./ResturantCard";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   //State Variable - super powerful variable
@@ -12,6 +13,8 @@ const Body = () => {
   const [listOfRestraunt, setListOfRestraunt] = useState([]);
   const [filterRestaurants, setFilterRestaurants] = useState([]);
 
+  const RestaruantCardPromoted = withPromotedLabel(ResturantCard);
+  const { loggedInUser, setUserName } = useContext(UserContext);
   //Normal js variable
   //   let listOfResturant = [
   //     {
@@ -47,6 +50,7 @@ const Body = () => {
   //   ];
 
   // It is for live data api
+  //console.log(listOfRestraunt);
 
   useEffect(() => {
     fetchData();
@@ -54,7 +58,7 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
 
     const json = await data.json();
@@ -68,6 +72,7 @@ const Body = () => {
   };
 
   const onlineStatus = useOnlineStatus();
+
   if (onlineStatus === false)
     return (
       <h1>Looks like you're offline! Please check internet connection...</h1>
@@ -77,17 +82,17 @@ const Body = () => {
     <Shimmer />
   ) : (
     <>
-      <div className="body">
-        <div className="search-container">
+      <div className="">
+        <div className=" p-4 m-4">
           <input
             type="text"
-            className="search-input"
+            className="border border-solid border-black rounded-md inline-flex"
             placeholder="Search a Restaruant name.."
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           ></input>
           <button
-            className="search-btn"
+            className="px-2 py-2 bg-green-100 m-4 rounded-lg"
             onClick={() => {
               const data = listOfRestraunt.filter((restaurant) =>
                 restaurant?.info?.name
@@ -100,7 +105,7 @@ const Body = () => {
             Search
           </button>
           <button
-            className="filter-btn"
+            className="px-2 py-2 bg-gray-50"
             onClick={() => {
               let filterlist = listOfRestraunt.filter(
                 (resturant) => resturant.info.avgRating > 4
@@ -110,14 +115,27 @@ const Body = () => {
           >
             Top Rated Restaurant
           </button>
+          <div>
+            <label>UserName : </label>
+            <input
+              type="text"
+              className="border border-solid border-black rounded-md inline-flex"
+              value={loggedInUser}
+              onChange={(e) => setUserName(e.target.value)}
+            ></input>
+          </div>
         </div>
-        <div className="restaurant-list">
+        <div className="flex-wrap  flex justify-center">
           {filterRestaurants.map((resturant) => (
             <Link
               key={resturant?.info?.id}
               to={"/restuarants/" + resturant.info.id}
             >
-              <ResturantCard res={resturant?.info} />
+              {resturant.info.promoted ? (
+                <RestaruantCardPromoted res={resturant?.info} />
+              ) : (
+                <ResturantCard res={resturant?.info} />
+              )}
             </Link>
           ))}
         </div>

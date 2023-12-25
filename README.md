@@ -70,3 +70,18 @@ import Component from "./path";
 
 -Client Side Routing
 -Server Side Routing
+
+# Redux Toolkit
+
+-Install @reduxjs/toolkit and react-redux
+-Build our store
+-connect our store to our app
+-slice(cartSlice)
+-dispatch(action)
+-selector
+
+# Types of testing (developer)
+
+- Unit Testing --> testing one unit
+  -Integration testing --> integrated parts testing
+  -End to End Testing -e2e testing --> whole application

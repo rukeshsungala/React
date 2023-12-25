@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <div className="footer">
+    <div className=" bg-orange-300 flex justify-center rounded-3xl ">
       Created By
       <i class="fa-solid fa-heart"></i>
       <a href="https://www.linkedin.com/in/rukesh-sungala/" target="_blank">

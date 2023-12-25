@@ -3,12 +3,15 @@ import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
 import { MENU_ITEM_TYPE_KEY } from "../utils/constants";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestaruantCategory from "./RestaruantCategory";
 
 const RestaruantMenu = () => {
   //const [resInfo, setResInfo] = useState(null);
 
   const { resId } = useParams();
   const resInfo = useRestaurantMenu(resId);
+  const [showIndex, setShowIndex] = useState(null);
+
   //console.log(resInfo);
 
   // useEffect(() => {
@@ -23,34 +26,40 @@ const RestaruantMenu = () => {
 
   const { name, costForTwoMessage, cuisines } =
     resInfo?.cards[0]?.card?.card?.info;
-  const { cards } = resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR;
-  //   const { itemCards1 } =
-  //     resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
-  //console.log(itemCards);
 
-  const menu = cards
-    ?.map((it) => it.card?.card)
-    ?.filter((x) => x["@type"] == MENU_ITEM_TYPE_KEY)
-    ?.map((x) => x.itemCards)
-    .flat()
-    .map((x) => x.card?.info);
-  console.log(menu);
+  const categories =
+    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (c) => c.card?.card?.["@type"] === MENU_ITEM_TYPE_KEY
+    );
+  // console.log(categories);
 
   return (
-    <div className="menu">
-      <h1>{name}</h1>
-      <p>
+    <div className="text-center">
+      <h1 className="font-bold my-3 text-2xl">{name}</h1>
+      <p className="font-bold text-lg">
         {cuisines.join(", ")} - {costForTwoMessage}
       </p>
-      <h2>Menu</h2>
+      <h2 className="font-bold text-2xl">Menu</h2>
+      {categories.map((category, index) => (
+        <RestaruantCategory
+          key={category?.card?.card?.title}
+          data={category?.card?.card}
+          showItems={index === showIndex ? true : false}
+          setShowIndex={() => setShowIndex(index)}
+        />
+      ))}
 
-      <ul className="menu">
-        {menu.map((item) => (
-          <li className="menu-item" key={item.id}>
-            {item.name} - {"Rs"}:{item.price / 100 || item.defaultPrice / 100}
+      {/* <ul className="inline-block">
+        {categories.map((item) => (
+          <li
+            className=" px-42 m-4 border rounded-xl  text-lg font-semibold shadow-md"
+            key={item?.itemCards?.card?.info?.id}
+          >
+            {item.name}
+            {"Rs"} {item.price / 100 || item.defaultPrice / 100}
           </li>
         ))}
-      </ul>
+      </ul> */}
     </div>
   );
 };
