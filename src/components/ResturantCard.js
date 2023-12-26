@@ -6,6 +6,7 @@ const ResturantCard = (props) => {
   const { res } = props;
   //instead of props we can write {resName,cuisine}
   // or const {resName,cuisine}=props. It is called destructuring
+  //console.log(res);
 
   const {
     cloudinaryImageId,
@@ -19,9 +20,12 @@ const ResturantCard = (props) => {
   const { loggedInUser } = useContext(UserContext);
 
   return (
-    <div className="m-4 w-[250px] p-4 rounded-2xl bg-gray-100 hover:bg-gray-300">
+    <div
+      data-testid="resCard"
+      className="  m-4 w-[250px] p-4 rounded-2xl bg-gray-100 hover:bg-gray-300"
+    >
       <img
-        alt="res-log"
+        alt="res-logo"
         className="rounded-2xl"
         src={CDN_URL + cloudinaryImageId}
       ></img>
@@ -34,7 +38,7 @@ const ResturantCard = (props) => {
         </h4>
         <h4>{costForTwo}</h4>
         <h4>{sla.deliveryTime} Minutes</h4>
-        <h4>{loggedInUser}</h4>
+        {/* <h4>{loggedInUser}</h4> */}
       </span>
     </div>
   );

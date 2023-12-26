@@ -31,7 +31,7 @@ const RestaruantMenu = () => {
     resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
       (c) => c.card?.card?.["@type"] === MENU_ITEM_TYPE_KEY
     );
-  // console.log(categories);
+   console.log(categories);
 
   return (
     <div className="text-center">

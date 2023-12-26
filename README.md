@@ -19,8 +19,6 @@ const Title = () => <h1 className="head">React using jsx</h1>;
 // );
 // };
 
-/\*\*
-
 # Food App
 
 - Header
@@ -85,3 +83,17 @@ import Component from "./path";
 - Unit Testing --> testing one unit
   -Integration testing --> integrated parts testing
   -End to End Testing -e2e testing --> whole application
+
+# Setting up Testing in our app
+
+- Install React Testing Library
+- Installed jest
+- Installed Babel dependencies
+- Configure Babel
+- Configure Parcel Config file to disable default babel transpilation
+- jest configuration--> npx jest --init
+- Install jsdom library
+- Install @bable/preset-react and include inside babel config file
+- Install testing library - npm i -D @testing-library/jest-dom
+
+#

@@ -13,7 +13,7 @@ const Header = () => {
 
   const cartItems = useSelector((store) => store.cart.items);
   return (
-    <div className="m-2 flex justify-between bg-red-500 shadow-lg mb-2 rounded-2xl">
+    <div className="m-2 flex items-centers justify-between bg-red-500 shadow-lg mb-2 rounded-2xl">
       <div className="logo-container">
         <img
           className="shadow-2xl table-fixed w-24 m-2 p-2 rounded-full"
